@@ -1,5 +1,3 @@
-package com.example.practice;
-
 public class LinkedListQs {
 
     static class Node {

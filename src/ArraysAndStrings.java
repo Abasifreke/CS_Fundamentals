@@ -1,32 +1,41 @@
-package com.example.practice;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class ArraysAndStrings {
-    private static HashSet<String> exclusionSet = new HashSet<>(Arrays.asList("agege", "ajeromi", "alimosho", "amukoko", "amuwo", "apapa", "banana", "badagry", "bus", "busstop", "clinic", "company", "ebute-metta", "epe", "eti", "eti-osa", "hosp", "hosp.", "hospital", "hospitals", "hospt.", "ibeju", "ifako-ijaye", "ifelodun", "ikeja", "ikorodu", "island", "isolo", "kosofe", "l.g.a", "l.g.a.", "lagos", "lekki", "lga", "limited", "ltd", "ltd.", "mainland", "mushin", "nigeria", "odofin", "ojo", "osa", "oshodi", "pharm", "pharma", "pharmaceutical", "pharmaceuticals", "pharmacy", "rd", "road", "shomolu", "state", "str", "street", "surulere", "vi", "victoria"));
+    private static HashSet<String> exclusionSet = new HashSet<>(Arrays.asList("agege", "ajeromi", "alimosho", "amukoko",
+            "amuwo", "apapa", "banana", "badagry", "bus", "busstop", "clinic", "company", "ebute-metta", "epe", "eti",
+            "eti-osa", "hosp", "hosp.", "hospital", "hospitals", "hospt.", "ibeju", "ifako-ijaye", "ifelodun", "ikeja",
+            "ikorodu", "island", "isolo", "kosofe", "l.g.a", "l.g.a.", "lagos", "lekki", "lga", "limited", "ltd",
+            "ltd.", "mainland", "mushin", "nigeria", "odofin", "ojo", "osa", "oshodi", "pharm", "pharma",
+            "pharmaceutical", "pharmaceuticals", "pharmacy", "rd", "road", "shomolu", "state", "str", "street",
+            "surulere", "vi", "victoria"));
 
     public static void main(String[] args) {
-//        System.out.println(compressString("aabcccccaaa"));
-//        System.out.println(zerofyMatrixRowsAndCols(new int[][]{{1, 0, 3}, {1, 2, 3}, {0, 0, 20}}));
-//        System.out.println(getSubWords("the big fox is u ", 9));
+        // System.out.println(compressString("aabcccccaaa"));
+        // System.out.println(zerofyMatrixRowsAndCols(new int[][]{{1, 0, 3}, {1, 2, 3},
+        // {0, 0, 20}}));
+        // System.out.println(getSubWords("the big fox is u ", 9));
         System.out.println(computeNameSimilarityScore("Famacare", "Famacare"));
     }
 
     /**
-     * Implement a method to perform basic string compression using the counts of repeated characters.
+     * Implement a method to perform basic string compression using the counts of
+     * repeated characters.
      * For example, the string aabcccccaaa would become a2b1c5a3.
-     * If the "compressed" string would not become smaller than the original string, your method should return the original string.
+     * If the "compressed" string would not become smaller than the original string,
+     * your method should return the original string.
      * <p>
-     * e.g. abca = abca; abcca = abcca; abccaacca = abccaacca; aaaba = aaaba; aaabbbaa = a3b3a2
+     * e.g. abca = abca; abcca = abcca; abccaacca = abccaacca; aaaba = aaaba;
+     * aaabbbaa = a3b3a2
      */
     private static String compressString(String input) {
         char last = input.charAt(0);
         int count = 1; // assume at least string of length 1
 
         // first iterate through string and count how big a difference would be needed
-        // sacrificing one additional round of N time for creating N space when not needed.
+        // sacrificing one additional round of N time for creating N space when not
+        // needed.
         for (int i = 1; i < input.length(); i++) {
             char curr = input.charAt(i);
 
@@ -39,8 +48,9 @@ public class ArraysAndStrings {
 
         if (count * 2 < input.length()) {
             StringBuffer sb = new StringBuffer(); // for any string mutation
-            // then iterate making the changes if the length compressed length would be smaller than original string
-            for (int i = 0; i < input.length(); ) {
+            // then iterate making the changes if the length compressed length would be
+            // smaller than original string
+            for (int i = 0; i < input.length();) {
                 char curr = input.charAt(i);
                 sb.append(curr);
                 int currCount = 1;
@@ -59,7 +69,8 @@ public class ArraysAndStrings {
     }
 
     /**
-     * Write an algorithm such that if an element in an MxN matrix is 0, its entire row
+     * Write an algorithm such that if an element in an MxN matrix is 0, its entire
+     * row
      * and column are set to 0
      */
     private static int[][] zerofyMatrixRowsAndCols(int[][] input) {
@@ -80,7 +91,8 @@ public class ArraysAndStrings {
             }
         }
 
-        // iterate through rest of matrix using first row and column for recording zero rows.
+        // iterate through rest of matrix using first row and column for recording zero
+        // rows.
         for (int i = 1; i < input.length; i++) {
             for (int j = 1; j < input[0].length; j++) {
                 if (input[i][j] == 0) {
@@ -115,14 +127,13 @@ public class ArraysAndStrings {
         return input; // placing a debugger shows the resultant array structure.
     }
 
-    public  static double computeNameSimilarityScore(String name1, String name2) {
-//        StringBuffer buffName1 = removeExclusions(name1.toLowerCase(), 2);
-//        StringBuffer buffName2 = removeExclusions(name2.toLowerCase(), 2);
-//
-//        int longStringLen = Math.max(buffName1.length(), buffName2.length());
-//        int editDistance = minDistance(buffName1.toString(), buffName2.toString());
-//        double score = 1.0 * (longStringLen - editDistance) / longStringLen;
-
+    public static double computeNameSimilarityScore(String name1, String name2) {
+        // StringBuffer buffName1 = removeExclusions(name1.toLowerCase(), 2);
+        // StringBuffer buffName2 = removeExclusions(name2.toLowerCase(), 2);
+        //
+        // int longStringLen = Math.max(buffName1.length(), buffName2.length());
+        // int editDistance = minDistance(buffName1.toString(), buffName2.toString());
+        // double score = 1.0 * (longStringLen - editDistance) / longStringLen;
 
         StringBuffer buffName1 = new StringBuffer(name1);
         StringBuffer buffName2 = new StringBuffer(name2);
@@ -167,7 +178,8 @@ public class ArraysAndStrings {
         while (count < charCount) {
             indexOfSpace = input.substring(0, input.length()).indexOf(c);
 
-            if (indexOfSpace == -1) break;
+            if (indexOfSpace == -1)
+                break;
 
             input = input.replace(indexOfSpace, indexOfSpace + 1, "");
             count++;

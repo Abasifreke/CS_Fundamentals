@@ -1,6 +1,3 @@
-package com.example.practice;
-
-
 import java.util.Arrays;
 import java.util.Stack;
 

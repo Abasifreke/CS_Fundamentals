@@ -1,7 +1,3 @@
-package com.example.practice;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -44,32 +40,39 @@ public class TreesAndGraphs {
 
     /**
      * Implement a function to check that a binary tree is balanced.
-     * A balanced binary tree is defined as one in which the heights of the 2 subtrees of any node
+     * A balanced binary tree is defined as one in which the heights of the 2
+     * subtrees of any node
      * never differs by more than one.
      */
     public static boolean isBalanced(Node root) {
-        if (root == null) return true;
+        if (root == null)
+            return true;
 
-        /* E.g.
-
-                        7
-                4             8
-            2       3               9
-       1
-
-
+        /*
+         * E.g.
+         * 
+         * 7
+         * 4 8
+         * 2 3 9
+         * 1
+         * 
+         * 
          */
         return checkHeight(root) != -1;
     }
 
-    // this return a node's height if its subtrees' heights differ less than 2. else it returns -1 to signify it's not balanced
+    // this return a node's height if its subtrees' heights differ less than 2. else
+    // it returns -1 to signify it's not balanced
     private static int checkHeight(Node node) {
-        if (node == null) return 0;
+        if (node == null)
+            return 0;
 
         // TODO: can optimize to make this checkleft/right recursive call once.
-        if (checkHeight(node.left) == -1 || checkHeight(node.right) == -1) return -1;
+        if (checkHeight(node.left) == -1 || checkHeight(node.right) == -1)
+            return -1;
         int delta = Math.abs(checkHeight(node.left) - checkHeight(node.right));
-        if (delta > 1) return -1;
+        if (delta > 1)
+            return -1;
 
         // return height
         return Math.max(checkHeight(node.left), checkHeight(node.right)) + 1;
@@ -82,7 +85,8 @@ public class TreesAndGraphs {
     }
 
     /**
-     * given a directed graph, design an algorithm to return if there's a path between two nodes
+     * given a directed graph, design an algorithm to return if there's a path
+     * between two nodes
      *
      * @param graph
      */
@@ -99,9 +103,10 @@ public class TreesAndGraphs {
         while (!q.isEmpty()) {
             GraphNode curr = q.poll();
             curr.state = STATE.VISITING;
-            if (curr == b) return true;
-            for(GraphNode graphNode: curr.adjacent){
-                if(graphNode.state == STATE.UNVISITED){
+            if (curr == b)
+                return true;
+            for (GraphNode graphNode : curr.adjacent) {
+                if (graphNode.state == STATE.UNVISITED) {
                     q.add(graphNode);
                 }
             }
@@ -109,7 +114,6 @@ public class TreesAndGraphs {
         }
         return false;
     }
-
 
     public static void main(String[] args) {
 
