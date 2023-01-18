@@ -33,7 +33,7 @@ public class Player {
     }
 
     // TODO: override tostring method to print out a proper Player
-    public String toString() {
-        return ("Player " + playerNumber + " is " + name);
-    }
+    // public String toString() {
+    // return ("Player " + playerNumber + " is " + name);
+    // }
 }

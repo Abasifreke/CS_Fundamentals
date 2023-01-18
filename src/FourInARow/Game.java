@@ -1,6 +1,10 @@
 package FourInARow;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import FourInARow.Exceptions.ColumnFullException;
+import FourInARow.Exceptions.InvalidMoveException;
 
 public class Game {
 
@@ -14,6 +18,7 @@ public class Game {
     }
 
     public void setUpGame() {
+        //TODO for students - Could reuse some exceptions here. 
         System.out.println("Enter player 1's name: ");
         players[0] = new Player(scanner.nextLine(), "1");
         System.out.println("Enter player 2's name: ");
@@ -27,22 +32,41 @@ public class Game {
     }
 
     public void playerTurn(Player currentPlayer) {
-        int col = currentPlayer.makeMove();
-        while (!board.addToken(col, currentPlayer.getPlayerNumber())) {
-            board.addToken(col, currentPlayer.getPlayerNumber());
+        try {
+            int col = currentPlayer.makeMove();
+            while (!board.addToken(col, currentPlayer.getPlayerNumber())) {
+                board.addToken(col, currentPlayer.getPlayerNumber());
+            }
+            board.printBoard();
+        } catch (InvalidMoveException invalidMoveException) {
+            System.out.print("Retry: ");
+            System.out.println(invalidMoveException.getMessage());
+            playerTurn(currentPlayer);
+        } catch (InputMismatchException invalidInputMismatchException) {
+            System.out.print("Please provide a valid value for column");
+            playerTurn(currentPlayer);
+        } catch (ColumnFullException columnFullException) {
+            System.out.println(columnFullException.getMessage());
+            playerTurn(currentPlayer);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        board.printBoard();
     }
 
     public void play() {
         boolean noWinner = true;
-
         this.setUpGame();
         int currentPlayerIndex = 0;
 
         while (noWinner) {
+            if (board.boardFull()) {
+                System.out.println("Board is now full. Game Ends.");
+                return;
+            }
+
             Player currentPlayer = players[currentPlayerIndex];
-            System.out.println(currentPlayer);
+            // Override default tostring for Player class
+            System.out.println("It is player " + currentPlayer.getPlayerNumber() + "'s turn. " + currentPlayer);
             playerTurn(currentPlayer);
             if (board.checkIfPlayerIsTheWinner(currentPlayer.getPlayerNumber())) {
                 printWinner(currentPlayer);

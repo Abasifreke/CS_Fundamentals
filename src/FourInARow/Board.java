@@ -3,6 +3,9 @@ package FourInARow;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import FourInARow.Exceptions.ColumnFullException;
+import FourInARow.Exceptions.InvalidMoveException;
+
 public class Board {
     private String[][] board;
     private Scanner scanner = new Scanner(System.in);
@@ -47,10 +50,16 @@ public class Board {
     }
 
     public boolean addToken(int colToAddToken, String playerName) {
+
+        if (colToAddToken > this.board[0].length - 1) {
+            throw new InvalidMoveException(
+                    "Column number exceeds number of columns on board. Columns go from 0 to "
+                            + (this.board[0].length - 1));
+        }
+
         if (columnFull(colToAddToken)) {
             // could return exception here.
-            System.out.println("Column Full");
-            return false;
+            throw new ColumnFullException("Column Full");
         }
 
         int rowToAddToken = board.length - 1;
