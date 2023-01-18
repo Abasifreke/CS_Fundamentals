@@ -38,7 +38,10 @@ public class Game {
                 board.addToken(col, currentPlayer.getPlayerNumber());
             }
             board.printBoard();
-        } catch (InvalidMoveException invalidMoveException) {
+        } 
+        // If you think functions calling themselves sounds interesting, 
+        // make sure you check out the recursion challenge activities elsewhere in this course.
+        catch (InvalidMoveException invalidMoveException) {
             System.out.print("Retry: ");
             System.out.println(invalidMoveException.getMessage());
             playerTurn(currentPlayer);
