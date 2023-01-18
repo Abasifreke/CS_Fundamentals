@@ -68,7 +68,6 @@ public class Board {
     }
 
     public boolean checkIfPlayerIsTheWinner(String playerNumber) {
-        boolean winner = false;
         if (checkHorizontal(playerNumber)) {
             return true;
         } else if (checkVertical(playerNumber)) {
@@ -131,7 +130,7 @@ public class Board {
 
     public boolean checkLeftDiagonal(String playerNumber) {
         for (int row = 0; row < board.length - 3; row++) {
-            for (int col = board[0].length; col > 2; col--) {
+            for (int col = board[0].length - 1; col > 2; col--) {
                 if (board[row][col].equals(playerNumber)) {
                     if (board[row][col] == board[row + 1][col - 1]
                             && board[row][col] == board[row + 2][col - 2]
