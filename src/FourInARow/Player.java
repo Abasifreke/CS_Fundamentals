@@ -2,35 +2,11 @@ package FourInARow;
 
 import java.util.Scanner;
 
-/* class Player():
-    def __init__(self):
-        self.name = ""
-        self.number = ""
-
-    def set_player(self , number):
-        name = input(f"Enter Player {number} Name: ")
-        self.name = name
-        self.number = str(number)
-
-    def get_name(self):
-        return self.name
-    
-    def get_number(self):
-        return self.number
-
-    def make_move(self):
-        column = int(input("Enter Column: "))
-        
-        return column
-
-    def check_winner(self):
-        return self.name
- */
-
 public class Player {
 
     private String name;
     private String playerNumber;
+    // Question: should scanner be static or not?
     private static Scanner scanner = new Scanner(System.in);
 
     public Player(String name, String playerNumber) {

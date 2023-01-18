@@ -1,56 +1,6 @@
 package FourInARow;
 
 import java.util.Scanner;
-/* 
- *
-class Game:
-    def __init__(self):
-        self.players = []
-        self.p1 = None
-        self.p2 = None
-        self.board = None
-
-    def set_up_game(self):
-        self.players = [Player() , Player()]
-        self.players[0].set_player("1")
-        self.players[1].set_player("2")
-        #self.p1 = Player()
-        #self.p1.set_player("1")
-        #self.p2 = Player()
-        #self.p2.set_player("2")
-        self.board = Board()
-        self.board.board_setup()
-        self.board.display()
-
-    def winner(self , player):
-        print(f"{player.get_name()} is the winner")   
-
-    def player_turn(self , current_player):        
-        column = current_player.make_move() 
-        while not self.board.add_token(column, current_player.get_number()):
-            self.board.add_token(column, current_player.get_number())
-        self.board.display()
-
-    def play(self):
-        run = True
-        self.set_up_game()
-        current_player = 0
-        while run:
-            print(current_player)
-            self.player_turn(self.players[current_player])
-            if self.board.check_winner(self.players[current_player].get_number()):
-                self.winner(self.players[current_player])
-                run = False
-            if current_player == 0:
-                current_player = 1
-            else:
-                current_player = 0
-
-
-    
-       
- * 
- * */
 
 public class Game {
 
