@@ -1,28 +1,22 @@
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class TreesAndGraphs {
 
     private static class Node {
 
-        private int value;
         private Node left;
         private Node right;
 
         private Node(int _value) {
-            value = _value;
         }
     }
 
     private static class GraphNode {
-        private int value;
         private HashSet<GraphNode> adjacent = new HashSet<>();
         private STATE state;
 
         private GraphNode(int _value) {
-            value = _value;
         }
 
         private void addAdjacent(GraphNode node) {
