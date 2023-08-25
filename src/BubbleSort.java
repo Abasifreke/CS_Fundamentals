@@ -6,18 +6,17 @@ public class BubbleSort {
     public static void main(String[] args) {
 
         Random rand = new Random();
-        int[] randomNumbers = new int[20];
-
+        int[] randomNumbers = new int[10];
         for (int i = 0; i < randomNumbers.length; i++) {
             randomNumbers[i] = rand.nextInt(10000);
         }
 
-        boolean swappedSomething = true;
+        boolean swappedSomething = false;
         int end = randomNumbers.length - 1;
 
-        while (swappedSomething) {
+        do {
+            // bubble down
             swappedSomething = false;
-            // bubble sort
             for (int j = 0; j < end; j++) {
                 if (randomNumbers[j] > randomNumbers[j + 1]) {
                     // swap
@@ -28,7 +27,7 @@ public class BubbleSort {
                 }
             }
             end--;
-        }
+        } while (swappedSomething);
 
         System.out.println(Arrays.toString(randomNumbers));
     }
