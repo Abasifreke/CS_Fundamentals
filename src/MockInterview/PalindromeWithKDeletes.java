@@ -1,7 +1,7 @@
 package MockInterview;
 
 /**
- * Given a string of length n and a number K ( 0<= K <= n), return if the string
+ * Given a string of length n and a number K ( 0<= K), return if the string
  * can become a palindrome with up to k deletions.
  */
 public class PalindromeWithKDeletes {
