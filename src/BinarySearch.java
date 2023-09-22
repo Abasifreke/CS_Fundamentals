@@ -15,7 +15,7 @@ public class BinarySearch {
         return binarySearch(arr, left, right, target);
     }
 
-    private static int binarySearch(int[] arr, int start, int end, int target) {
+    public static int binarySearch(int[] arr, int start, int end, int target) {
         int middle = (start + end) / 2;
         int middleVal = arr[middle];
 
