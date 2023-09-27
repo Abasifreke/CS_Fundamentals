@@ -11,7 +11,10 @@ public class TreeNode<T> {
     }
 
     public T getValue(TreeNode<T> t) {
-        return t.value;
+        if (t != null) {
+            return t.value;
+        }
+        return null;
     }
 
     public void setLeft(TreeNode<T> left) {
@@ -22,11 +25,11 @@ public class TreeNode<T> {
         this.right = right;
     }
 
-    public TreeNode<T> getLeft(){
+    public TreeNode<T> getLeft() {
         return this.left;
     }
 
-    public TreeNode<T> getRight(){
+    public TreeNode<T> getRight() {
         return this.right;
     }
 }
