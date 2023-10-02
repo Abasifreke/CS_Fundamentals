@@ -41,9 +41,11 @@ class LowestCommonAncestor {
         // deeper to meet smaller
         while (pDepth > qDepth) {
             p = parentMap.get(p);
+            pDepth--;
         }
         while (pDepth < qDepth) {
             q = parentMap.get(q);
+            qDepth--;
         }
 
         while (p != q) {
