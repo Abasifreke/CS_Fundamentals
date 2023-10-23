@@ -11,32 +11,45 @@ public class LinkedListQs {
     }
 
     /**
-     * Implement an algorithm to delete a node from the middle of singly linked List (SLL) given access to only that node
+     * Implement an algorithm to delete a node from the middle of singly linked List
+     * (SLL) given access to only that node
      */
     static void deleteNodeInSLL(Node nodeToDelete) {
-        if(nodeToDelete.next == null){
+        if (nodeToDelete.next == null) {
             nodeToDelete = null;
-        }else if(nodeToDelete.next.next == null){
+        } else if (nodeToDelete.next.next == null) {
             nodeToDelete.value = nodeToDelete.next.value;
             nodeToDelete.next = null;
-        }else {
+        } else {
             Node nodeToDeletesNextNext = nodeToDelete.next.next;
             nodeToDelete.value = nodeToDelete.next.value;
             nodeToDelete.next = nodeToDeletesNextNext;
         }
     }
 
+    static Node reverseLinkedList(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node newHead = reverseLinkedList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
 
     /**
-     *
+     *​@NeetCode could people ask to be reconsidered for a lower Level if they fail say L5 or l4?
      * @param head,tail
      * @return if a linked list (assuming a doubly linked list is a palindrome)
      */
-    static boolean checkPalindrome(Node head, Node tail){
-        if(head == null || head.next == null) return true;
+    static boolean checkPalindrome(Node head, Node tail) {
+        if (head == null || head.next == null)
+            return true;
 
-        while(head != tail){
-            if(head.value != tail.value) return false;
+        while (head != tail) {
+            if (head.value != tail.value)
+                return false;
 
             head = head.next;
             tail = tail.prev;
@@ -62,9 +75,9 @@ public class LinkedListQs {
         Node a = new Node('a');
         Node b = new Node('b');
         Node c = new Node('c');
-        Node d = new Node('c');
-        Node e = new Node('b');
-        Node f = new Node('a');
+        Node d = new Node('d');
+        Node e = new Node('e');
+        Node f = new Node('f');
         a.next = b;
         b.next = c;
         c.next = d;
@@ -76,10 +89,10 @@ public class LinkedListQs {
         e.prev = d;
         f.prev = e;
 
+        // deleteNodeInSLL(d);
 
-//        deleteNodeInSLL(d);
-
-        System.out.println(toString(a));
         System.out.println(checkPalindrome(a, e));
+        System.out.println(toString(a));
+        System.out.println(toString(reverseLinkedList(a)));
     }
 }
