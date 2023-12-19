@@ -1,0 +1,377 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "SubArray",
+            "request": "launch",
+            "mainClass": "SubArray",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "name": "Java",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${fileDirname}",
+            "startupClass": "${fileBasenameNoExtension}",
+            "classpath": [
+                ".",
+                "${fileDirname}"
+            ]
+        },
+        {
+            "name": "Java Console App",
+            "type": "java",
+            "request": "launch",
+            "stopOnEntry": true,
+            "jdkPath": "${env:JAVA_HOME}/bin",
+            "cwd": "${fileDirname}",
+            "startupClass": "${fileBasenameNoExtension}",
+            "classpath": [
+                ".",
+                "${fileDirname}"
+            ],
+            "externalConsole": true
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "AccessorExample",
+            "request": "launch",
+            "mainClass": "AccessorExample",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ArraysAndStrings",
+            "request": "launch",
+            "mainClass": "ArraysAndStrings",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "BinarySearch",
+            "request": "launch",
+            "mainClass": "BinarySearch",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ClosedIsland",
+            "request": "launch",
+            "mainClass": "Blind75.ClosedIsland",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "DifferenceBtwStrings",
+            "request": "launch",
+            "mainClass": "Blind75.DifferenceBtwStrings",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Dijkstras",
+            "request": "launch",
+            "mainClass": "Blind75.Dijkstras",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "EncodeDecode",
+            "request": "launch",
+            "mainClass": "Blind75.EncodeDecode",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "GroupAnagram",
+            "request": "launch",
+            "mainClass": "Blind75.GroupAnagram",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "LongestConsecutiveSequence",
+            "request": "launch",
+            "mainClass": "Blind75.LongestConsecutiveSequence",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "LongestRepeatingCharReplaced",
+            "request": "launch",
+            "mainClass": "Blind75.LongestRepeatingCharReplaced",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MaxContainer",
+            "request": "launch",
+            "mainClass": "Blind75.MaxContainer",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MinOpsToReduceX",
+            "request": "launch",
+            "mainClass": "Blind75.MinOpsToReduceX",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MinWindowSubstring",
+            "request": "launch",
+            "mainClass": "Blind75.MinWindowSubstring",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ProductOfAllButSelf",
+            "request": "launch",
+            "mainClass": "Blind75.ProductOfAllButSelf",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ThreeSum",
+            "request": "launch",
+            "mainClass": "Blind75.ThreeSum",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "TopKFrequentElements",
+            "request": "launch",
+            "mainClass": "Blind75.TopKFrequentElements",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Trie",
+            "request": "launch",
+            "mainClass": "Blind75.Trie",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "TwoSum",
+            "request": "launch",
+            "mainClass": "Blind75.TwoSum",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ValidAnagram",
+            "request": "launch",
+            "mainClass": "Blind75.ValidAnagram",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ValidPartition",
+            "request": "launch",
+            "mainClass": "Blind75.ValidPartition",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "BubbleSort",
+            "request": "launch",
+            "mainClass": "BubbleSort",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "BubbleSortFor",
+            "request": "launch",
+            "mainClass": "BubbleSortFor",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "DutchNationalFlag",
+            "request": "launch",
+            "mainClass": "DutchNationalFlag",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ConcatArray",
+            "request": "launch",
+            "mainClass": "Easy.ConcatArray",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MinDistInBST",
+            "request": "launch",
+            "mainClass": "Easy.MinDistInBST",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "PostOrder",
+            "request": "launch",
+            "mainClass": "Easy.PostOrder",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "PreOrder",
+            "request": "launch",
+            "mainClass": "Easy.PreOrder",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Sqrt",
+            "request": "launch",
+            "mainClass": "Easy.Sqrt",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "SymmetricTree",
+            "request": "launch",
+            "mainClass": "Easy.SymmetricTree",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "TestClass",
+            "request": "launch",
+            "mainClass": "FourInARow.TestClass",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Graph",
+            "request": "launch",
+            "mainClass": "Graphs.Graph",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "InsertionSort",
+            "request": "launch",
+            "mainClass": "InsertionSort",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "LinkedListQs",
+            "request": "launch",
+            "mainClass": "LinkedListQs",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "LongestRepeatingWithSwap",
+            "request": "launch",
+            "mainClass": "LongestRepeatingWithSwap",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MergeSort",
+            "request": "launch",
+            "mainClass": "MergeSort",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MaxDetonation",
+            "request": "launch",
+            "mainClass": "MockInterview.MaxDetonation",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "PalindromeWithKDeletes",
+            "request": "launch",
+            "mainClass": "MockInterview.PalindromeWithKDeletes",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "QuickSort",
+            "request": "launch",
+            "mainClass": "QuickSort",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "ReturnKthToLast",
+            "request": "launch",
+            "mainClass": "ReturnKthToLast",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Stacks",
+            "request": "launch",
+            "mainClass": "Stacks",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "StringCompression",
+            "request": "launch",
+            "mainClass": "StringCompression",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "MinHeap",
+            "request": "launch",
+            "mainClass": "Trees.MinHeap",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "TreeTransversals",
+            "request": "launch",
+            "mainClass": "Trees.TreeTransversals",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Tries",
+            "request": "launch",
+            "mainClass": "Trees.Tries",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "TreesAndGraphs",
+            "request": "launch",
+            "mainClass": "TreesAndGraphs",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "Triangles",
+            "request": "launch",
+            "mainClass": "Triangles",
+            "projectName": "Practice_581f4ff5"
+        }
+    ]
+}

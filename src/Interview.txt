@@ -1,0 +1,40 @@
+
+1 - 1 convos
+ui has left nav for all people that are part of my team - not caring about status
+clicking the left nav opens history of convos
+small box on bottom to type message and send. 
+
+list of people
+sent message and send messages
+
+
+Assumpitons
+Userbase - 100 people
+majority of load btwn 9 - 5
+history is forever
+no notificatoin
+they only see messages when they open. 
+polling every 30 seconds. 
+flat text message
+
+
+apis
+base_url = api.slack.com/
+- get contacts
+    - GET :contacts - (userName)
+- get message
+    - GET :message - (userName, contactUsername, timeframe)
+    - {body: text, timeframe, status, username, thread...} - sorted in Desc in timestamp - 10000000
+- post sendMessage
+    - POST :message - { username, timestamp, body, contactUserName}
+
+
+DB
+- relationships
+- messages
+
+
+
+
+
+
