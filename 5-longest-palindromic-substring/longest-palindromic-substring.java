@@ -1,36 +1,38 @@
-public class Solution {
+class Solution {
     public String longestPalindrome(String s) {
-        if (s.length() <= 1) {
+        /*
+
+            babadda
+            [3, 3, 0, 4 ,]
+
+        */
+        // for each char, start from back and look for palidrome. 
+        // if found, check size against max so far and set max
+        if(s.length() < 2){
             return s;
         }
 
-        int maxLen = 1;
-        String maxStr = s.substring(0, 1);
-        s = "#" + s.replaceAll("", "#") + "#";
-        int[] dp = new int[s.length()];
-        int center = 0;
-        int right = 0;
+        String maxSub = "";
 
-        for (int i = 0; i < s.length(); i++) {
-            if (i < right) {
-                dp[i] = Math.min(right - i, dp[2 * center - i]);
+        for(int i = 0; i < s.length(); i ++){
+            int left = i;
+            int right=i;
+            // expand middle as much as possible first
+            while(right+1 < s.length() && s.charAt(right+1) == s.charAt(right)){
+                right++;
+            }
+            while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){
+                left--;
+                right++;
             }
 
-            while (i - dp[i] - 1 >= 0 && i + dp[i] + 1 < s.length() && s.charAt(i - dp[i] - 1) == s.charAt(i + dp[i] + 1)) {
-                dp[i]++;
-            }
-
-            if (i + dp[i] > right) {
-                center = i;
-                right = i + dp[i];
-            }
-
-            if (dp[i] > maxLen) {
-                maxLen = dp[i];
-                maxStr = s.substring(i - dp[i], i + dp[i] + 1).replaceAll("#", "");
+            left++;
+            right--;
+            if(right - left + 1 > maxSub.length()){
+                maxSub = s.substring(left, right+1);
             }
         }
 
-        return maxStr;
+        return maxSub;
     }
 }
