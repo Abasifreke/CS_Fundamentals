@@ -1,38 +1,37 @@
 class Solution {
     public String longestPalindrome(String s) {
-        /*
-
-            babadda
-            [3, 3, 0, 4 ,]
-
-        */
-        // for each char, start from back and look for palidrome. 
-        // if found, check size against max so far and set max
-        if(s.length() < 2){
-            return s;
-        }
-
-        String maxSub = "";
-
-        for(int i = 0; i < s.length(); i ++){
-            int left = i;
-            int right=i;
-            // expand middle as much as possible first
-            while(right+1 < s.length() && s.charAt(right+1) == s.charAt(right)){
-                right++;
+        int[] ans = new int[]{0, 0};
+        
+        for (int i = 0; i < s.length(); i++) {
+            int oddLength = expand(i, i, s);
+            if (oddLength > ans[1] - ans[0] + 1) {
+                int dist = oddLength / 2;
+                ans[0] = i - dist;
+                ans[1] = i + dist;
             }
-            while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){
-                left--;
-                right++;
-            }
-
-            left++;
-            right--;
-            if(right - left + 1 > maxSub.length()){
-                maxSub = s.substring(left, right+1);
+            
+            int evenLength = expand(i, i + 1, s);
+            if (evenLength > ans[1] - ans[0] + 1) {
+                int dist = (evenLength / 2) - 1;
+                ans[0] = i - dist;
+                ans[1] = i + 1 + dist;
             }
         }
 
-        return maxSub;
+        int i = ans[0];
+        int j = ans[1];
+        return s.substring(i, j + 1);
+    }
+    
+    private int expand(int i, int j, String s) {
+        int left = i;
+        int right = j;
+        
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+
+        return right - left - 1;
     }
 }
