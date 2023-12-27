@@ -25,7 +25,7 @@ class Solution {
         }else{
             int max = Math.max(calcCommonSub(dp, text1, text2, m, n-1), 
             calcCommonSub(dp, text1, text2, m-1, n));
-            max = Math.max(max, calcCommonSub(dp, text1, text2, m-1, n-1));
+            // max = Math.max(max, calcCommonSub(dp, text1, text2, m-1, n-1));
             dp[m][n] = max;
         }
 
