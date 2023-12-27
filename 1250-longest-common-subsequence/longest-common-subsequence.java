@@ -1,34 +1,35 @@
 class Solution {
-    public int longestCommonSubsequence(String text1, String text2) {
-        int m = text1.length(), n = text2.length();
-        int[][] dp = new int[m][n];
-
-        for(int[] i: dp){
-            Arrays.fill(i, -1);
-        }
-
-        return calcCommonSub(dp, text1, text2, m-1, n-1);
-        // return dp[m-1][n-1];
+    
+  public int longestCommonSubsequence(String text1, String text2) {    
+    
+    // If text1 doesn't reference the shortest string, swap them.
+    if (text2.length() < text1.length()) {
+      String temp = text1;
+      text1 = text2;
+      text2 = temp;
     }
-
-    private int calcCommonSub(int[][] dp, String text1, String text2, int m, int n){
-         if (m < 0 || n < 0) {
-            return 0;
+      
+    // The previous and current column starts with all 0's and like 
+    // before is 1 more than the length of the first word.
+    int[] previous = new int[text1.length() + 1];
+    int[] current = new int[text1.length() + 1];
+      
+    // Iterate through each column, starting from the last one.
+    for (int col = text2.length() - 1; col >= 0; col--) {
+      for (int row = text1.length() - 1; row >= 0; row--) {
+        if (text1.charAt(row) == text2.charAt(col)) {
+          current[row] = 1 + previous[row + 1];
+        } else {
+          current[row] = Math.max(previous[row], current[row + 1]);
         }
-
-        if(dp[m][n] != -1){
-            return dp[m][n];
-        }
-
-        if(text1.charAt(m) == text2.charAt(n)){
-            dp[m][n] = calcCommonSub(dp, text1, text2, m-1, n-1) + 1;
-        }else{
-            int max = Math.max(calcCommonSub(dp, text1, text2, m, n-1), 
-            calcCommonSub(dp, text1, text2, m-1, n));
-            // max = Math.max(max, calcCommonSub(dp, text1, text2, m-1, n-1));
-            dp[m][n] = max;
-        }
-
-        return dp[m][n];
+      }
+      // The current column becomes the previous one, and vice versa.
+      int[] temp = previous;
+      previous = current;
+      current = temp;
     }
+        
+    // The original problem's answer is in previous[0]. Return it.
+    return previous[0];
+  }
 }
