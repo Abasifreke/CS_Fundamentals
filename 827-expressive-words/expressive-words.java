@@ -1,86 +1,52 @@
 class Solution {
     public int expressiveWords(String s, String[] words) {
-        // encode words;
-        String sEncoded = encode(s);
-        String[] wordsEncoded = new String[words.length];
-        
-        int i = 0;
-        for(String w: words){
-            wordsEncoded[i++] = encode(w);
+        String counts = getLetterWithCount(s);
+        // System.out.println(counts);
+        int stretchy = 0;
+        for(int i=0; i< words.length; i++) {
+            if(isStretchy(counts, words[i])) ++stretchy;
         }
-        
-//         System.out.println(sEncoded);
-//         System.out.println(Arrays.toString(wordsEncoded));
-        
-        int stretchyCount = 0;
-        
-        for(String we : wordsEncoded){
-            // System.out.print("strechy count for " + we + " and " + sEncoded + " is " + isStretch(we, sEncoded));
-            stretchyCount += isStretch(we, sEncoded);
-        }
-        
-        return stretchyCount;
+        return stretchy;
     }
     
-    public int isStretch(String we, String sEncoded){
-        String[] sEncodedParts = sEncoded.split(":");
-        String[] weParts = we.split(":");
-        
-        if(sEncodedParts.length != weParts.length){
-            // System.out.println("eject 1");
-            return 0;
-        }
-        
-     
-        for(int i = 0; i < sEncodedParts.length; i++){
-            // System.out.println(sEncodedParts[i]);
-            // System.out.println(weParts[i]);
+    private boolean isStretchy(String counts, String query) {
+        // System.out.println(query);
+        int j= 0 , i=0;
+        for(; i< counts.length()-1; i+=2) {
+            if(j >= query.length()) return false;
+            int cc = counts.charAt(i+1)-48;
+            char ch = counts.charAt(i), cCh = query.charAt(j);
+            // System.out.println(cc+" "+ch+" "+cCh);
+            if(cCh != ch) return false;
             
-            if(!sEncodedParts[i].equals(weParts[i])){
-                String[] sEpart = sEncodedParts[i].split("-");
-                String[] wePart = weParts[i].split("-");
-                int numOfSpart = Integer.parseInt(sEpart[0]);
-                int numOfWepart = Integer.parseInt(wePart[0]);
-                
-                // System.out.println(sEpart[1] + " | " + wePart[1] + " | " + numOfWepart + " | " + numOfSpart);
-
-                if(!sEpart[1].equals(wePart[1]) || numOfWepart > numOfSpart || Math.min(numOfSpart, 3) < 3){
-                    // System.out.println(sEpart[1] + " | " + wePart[1] + " | " + numOfWepart + " | " + numOfSpart);
-                    //  System.out.println("eject 2");
-                    return 0;
-                }
+            int count = 0;
+            while(j < query.length() && query.charAt(j) == cCh) {
+                // System.out.println();
+                ++j;  
+                ++count;                
             }
+            if((cc- count < 0) || (cc -count > 0 && cc <= 2)) return false;                        
         }
-        
-        return 1;
-        
+        return j == query.length()?true:false;
     }
     
-    public String encode(String s){
-        StringBuilder sb = new StringBuilder();
-        if(s.length() == 1){
-            return "1-s";
+    private String getLetterWithCount(String s) {
+        StringBuilder sb = new StringBuilder();        
+        char fCh = s.charAt(0); 
+        int count = 1;
+        for(int i=1; i< s.length(); i++) {
+            char cCh = s.charAt(i);
+            if(fCh == cCh) {
+                ++count;
+                continue;
+            } 
+            sb.append(fCh);
+            sb.append(count);
+            fCh = cCh;
+            count = 1;
         }
-        
-        
-        int charCount = 1;
-        int i = 1;
-        for(; i < s.length(); i++){
-            if(s.charAt(i) == s.charAt(i-1)){
-                charCount++;
-            }else{
-                sb.append(':');
-                sb.append(charCount);
-                sb.append('-');
-                sb.append(s.charAt(i-1));
-                charCount = 1;
-            }
-        }
-        sb.append(':');
-        sb.append(charCount);
-        sb.append('-');
-        sb.append(s.charAt(i-1));
-        
+        sb.append(fCh);
+        sb.append(count);
         return sb.toString();
     }
 }
