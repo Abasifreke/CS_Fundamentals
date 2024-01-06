@@ -24,9 +24,9 @@ class Solution {
         // powerSet(nums, start +1, result, accumulator);
 
         // choosing start
+        powerSet(nums, start+1, result, new ArrayList<>(accumulator));
         accumulator.add(nums[start]);
-        powerSet(nums, start+1, result, accumulator);
-        accumulator.removeLast();
+        // accumulator.removeLast();
         powerSet(nums, start+1, result, accumulator);
     }
 }
