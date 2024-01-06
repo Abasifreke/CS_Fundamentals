@@ -13,15 +13,10 @@ class Solution {
     }
 
     public void powerSet(int[] nums, int start, List<List<Integer>> result, List<Integer> accumulator){
-
         if(start == nums.length){
             result.add(new ArrayList<>(accumulator));
             return;
         }
-
-        // don't choose start
-        // List<Integer> accumulatorWithout = new ArrayList<>(accumulator);
-        // powerSet(nums, start +1, result, accumulator);
 
         // choosing start
         powerSet(nums, start+1, result, new ArrayList<>(accumulator));
