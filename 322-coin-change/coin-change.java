@@ -49,21 +49,14 @@ class Solution {
 
     */
     public int coinChange(int[] coins, int amount) {
-        Set<Integer> coinSet = new HashSet<>();
-        for(int c: coins){
-            coinSet.add(c);
-        }
 
-        //  (2), amount = 3
-        //  0, 1, 2, 3
-        // [0, M, 1, ]
         int[] memo = new int[amount + 1];
         Arrays.fill(memo, amount + 1);
         memo[0] = 0;
 
         for(int i = 1; i <= amount; i++){
             // build out memo - for ever i, get it's mininum number of coins;
-            for(int coin: coinSet){
+            for(int coin: coins){
                 if(coin <= i){
                     memo[i] = Math.min(memo[i], 1 + memo[i - coin]);
                 }
