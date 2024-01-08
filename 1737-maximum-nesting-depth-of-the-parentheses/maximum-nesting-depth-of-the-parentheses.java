@@ -4,13 +4,10 @@ class Solution {
         int  maxCount = 0;
 
         for(char c: s.toCharArray()){
-            if(c != '(' && c != ')')
-                continue;
 
             if(c == '('){
-                openCount++;
-                maxCount = Math.max(maxCount, openCount);
-            }else{
+                maxCount = Math.max(maxCount, ++openCount);
+            }else if(c == ')'){
                 openCount--;
             }
         }
