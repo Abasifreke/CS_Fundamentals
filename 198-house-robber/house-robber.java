@@ -10,9 +10,9 @@ class Solution {
         
         // build bottom up solution with only two variables to store last two houses' max robbed.
         for(int i = 2; i < nums.length; i++ ){
-            int maxRobbed = Math.max(nums[i] + twoHousesAgo, oneHouseAgo);
+            int maxRobbable = Math.max(nums[i] + twoHousesAgo, oneHouseAgo);
             twoHousesAgo = oneHouseAgo;
-            oneHouseAgo = maxRobbed;
+            oneHouseAgo = maxRobbable;
         }
       
         return oneHouseAgo;
