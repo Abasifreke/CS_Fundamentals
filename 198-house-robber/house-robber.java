@@ -17,7 +17,7 @@ class Solution {
             // twoHousesAgo = oneHouseAgo;
             // oneHouseAgo = maxRobbed;
         }
-        System.out.println(Arrays.toString(robbed));
+        // System.out.println(Arrays.toString(robbed));
         return Math.max(robbed[robbed.length-1], robbed[robbed.length-2]);
     }
 }
