@@ -1,6 +1,6 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        // if(s2.length() < s1.length()) return false;
+        if(s2.length() < s1.length()) return false;
 
         int[] s1Map = new int[26];
         int[] s2Map = new int[26];
