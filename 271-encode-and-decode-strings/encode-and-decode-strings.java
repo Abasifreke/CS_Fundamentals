@@ -16,7 +16,6 @@ public class Codec {
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-        System.out.println(s);
         String[] sParts = s.split("è", -1);
         // System.out.println(Arrays.toString(sParts));
         return Arrays.asList(sParts);
