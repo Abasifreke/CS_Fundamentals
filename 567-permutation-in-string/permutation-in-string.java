@@ -25,7 +25,7 @@ class Solution {
 
             right++;
 
-            if((right-left) == s1.length()){
+            if(right >= s1.length()){
                 if(have == need)return true;
 
                 char cLeft = s2.charAt(left++);
