@@ -5,6 +5,8 @@ class Solution {
         maxIndex.push(-1);
         int i = 0;
         for(; i < heights.length; i++){
+            int hVal = i==heights.length ? 0: heights[i];
+
             while(maxIndex.peek() != -1  && heights[maxIndex.peek()] >= heights[i]){
                 int currHeight = heights[maxIndex.pop()];
                 int currWidth = i - maxIndex.peek() - 1;
