@@ -1,20 +1,26 @@
 class Solution {
     public int rob(int[] nums) {
-        if(nums.length == 1){
-            return nums[0];
-        }
         
-        // first adjecent houses. Order looks like... twoHousesAgo | oneHouseAgo | current house | next house... etc.
-        int oneHouseAgo = Math.max(nums[0], nums[1]);
-        int twoHousesAgo = nums[0];
+        /*
+            [2,7,9,3,1] 
+            [1, 3, 2, 1]
+
+            //[1, max(1,2), max(i-1, val(i) + i-2),  val(i) + i-2), val(i) + i-2)]
+            [2,7,11,11,12] 
+            [1, 3, 3, 4] = 4
+        */
+        int n = nums.length;
+
+        if(n == 1) return nums[0];
         
-        // build bottom up solution with only two variables to store last two houses' max robbed.
-        for(int i = 2; i < nums.length; i++ ){
-            int maxRobbable = Math.max(nums[i] + twoHousesAgo, oneHouseAgo);
-            twoHousesAgo = oneHouseAgo;
-            oneHouseAgo = maxRobbable;
+        int[] dp = new int[n];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+
+        for(int i = 2; i < n; i++){
+            dp[i] = Math.max(dp[i-1], nums[i] + dp[i-2]);
         }
-      
-        return oneHouseAgo;
+
+        return Math.max(dp[n-1], dp[n-2]);
     }
 }
