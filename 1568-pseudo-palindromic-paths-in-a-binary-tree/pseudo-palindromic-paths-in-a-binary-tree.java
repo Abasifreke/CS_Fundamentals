@@ -17,39 +17,36 @@ class Solution {
     public int pseudoPalindromicPaths (TreeNode root) {
 
         int[] numOfPalPaths = {0};
+        int[] map = new int[10];
         
-        travelToLeaf(root, new HashMap<Integer, Integer>(), numOfPalPaths);
+        travelToLeaf(root, map, numOfPalPaths);
         return numOfPalPaths[0];
     }
 
-    private void travelToLeaf(TreeNode root, HashMap<Integer, Integer> counter, int[] numOfPalPaths){
-        counter.putIfAbsent(root.val, 0);
-        counter.put(root.val, counter.get(root.val) + 1);
-
+    private void travelToLeaf(TreeNode root, int[] map, int[] numOfPalPaths){
+        map[root.val]++;
+        
         if(root.left == null && root.right == null){
             int numOfOdds = 0;
-            for(int nodeVal: counter.keySet()){
-                if(counter.get(nodeVal) % 2 == 1){
+            for(int nodeVal: map){
+                if(nodeVal % 2 == 1){
                     numOfOdds++;
-
-                    if(numOfOdds > 1)break;
                 }
             }
 
             if(numOfOdds <= 1){
                 numOfPalPaths[0]++;
             }
-            // counter.put(root.val, counter.get(root.val) - 1);
         }
        
         if(root.left != null){
-            travelToLeaf(root.left, counter, numOfPalPaths);
+            travelToLeaf(root.left, map, numOfPalPaths);
         }
 
         if(root.right != null){
-            travelToLeaf(root.right, counter, numOfPalPaths);
+            travelToLeaf(root.right, map, numOfPalPaths);
         }
 
-        counter.put(root.val, counter.get(root.val) - 1);
+        map[root.val]--;
     }
 }
