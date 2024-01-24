@@ -23,9 +23,10 @@ class Solution {
     }
 
     private void travelToLeaf(TreeNode root, HashMap<Integer, Integer> counter, int[] numOfPalPaths){
+        counter.putIfAbsent(root.val, 0);
+        counter.put(root.val, counter.get(root.val) + 1);
+
         if(root.left == null && root.right == null){
-            counter.putIfAbsent(root.val, 0);
-            counter.put(root.val, counter.get(root.val) + 1);
             int numOfOdds = 0;
             for(int nodeVal: counter.keySet()){
                 if(counter.get(nodeVal) % 2 == 1){
@@ -38,24 +39,17 @@ class Solution {
             if(numOfOdds <= 1){
                 numOfPalPaths[0]++;
             }
-
-            // System.out.println(counter);
-            // System.out.println("made numOfPalPaths = " + numOfPalPaths[0]);
-            counter.put(root.val, counter.get(root.val) - 1);
+            // counter.put(root.val, counter.get(root.val) - 1);
         }
        
         if(root.left != null){
-            counter.putIfAbsent(root.val, 0);
-            counter.put(root.val, counter.get(root.val) + 1);
             travelToLeaf(root.left, counter, numOfPalPaths);
-            counter.put(root.val, counter.get(root.val) - 1);
         }
 
         if(root.right != null){
-            counter.putIfAbsent(root.val, 0);
-            counter.put(root.val, counter.get(root.val) + 1);
             travelToLeaf(root.right, counter, numOfPalPaths);
-            counter.put(root.val, counter.get(root.val) - 1);
         }
+
+        counter.put(root.val, counter.get(root.val) - 1);
     }
 }
