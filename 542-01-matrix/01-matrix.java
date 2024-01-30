@@ -1,53 +1,53 @@
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
-        int m = mat.length, n = mat[0].length;
+        int m = mat.length;
+        int n = mat[0].length;
         int[][] dp = new int[m][n];
         
-        /*
-            0 0 0
-            0 1 0
-            1 1 1
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                dp[row][col] = mat[row][col];
+            }
+        } 
 
-            0 0 0
-            0 1 0 
-            1 2 1
-
-
-            0 0 0
-            0 1 0 
-            1 2 1
-            
-    
-
-
-        */
-        for(int i = 0; i < m; i++){
-            dp[i] = Arrays.copyOf(mat[i], n);
-        }
-
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(mat[i][j] != 0){
-                    dp[i][j] = Math.min(getValOrMax(dp, i, j-1), getValOrMax(dp, i-1, j)) + 1;
+        for (int row = 0; row < m; row++) {
+            for (int col = 0; col < n; col++) {
+                if (dp[row][col] == 0) {
+                    continue;
                 }
+
+                int minNeighbor = m * n;
+                if (row > 0) {
+                    minNeighbor = Math.min(minNeighbor, dp[row - 1][col]);
+                }
+                
+                if (col > 0) {
+                    minNeighbor = Math.min(minNeighbor, dp[row][col - 1]);
+                }
+                
+                dp[row][col] = minNeighbor + 1;
             }
         }
-
-        for(int i = m-1; i >= 0; i--){
-            for(int j = n-1; j >= 0; j--){
-                if(dp[i][j] != 0){
-                    dp[i][j] = Math.min(dp[i][j], Math.min(getValOrMax(dp, i, j+1), getValOrMax(dp, i+1, j)) + 1);
+        
+        for (int row = m - 1; row >= 0; row--) {
+            for (int col = n - 1; col >= 0; col--) {
+                if (dp[row][col] == 0) {
+                    continue;
                 }
+                
+                int minNeighbor = m * n;
+                if (row < m - 1) {
+                    minNeighbor = Math.min(minNeighbor, dp[row + 1][col]);
+                }
+                
+                if (col < n - 1) {
+                    minNeighbor = Math.min(minNeighbor, dp[row][col + 1]);
+                }
+                
+                dp[row][col] = Math.min(dp[row][col], minNeighbor + 1);
             }
         }
-
+        
         return dp;
-    }
-
-    private int getValOrMax(int[][] mat, int i, int j){
-        int m = mat.length, n = mat[0].length;
-        if(i < 0 || i == m || j < 0 || j == n) return m * n;
-
-        return mat[i][j];
     }
 }
