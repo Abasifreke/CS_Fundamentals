@@ -27,7 +27,7 @@ class Solution {
 
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
-                if(mat[i][j] == 1){
+                if(mat[i][j] != 0){
                     dp[i][j] = Math.min(getValOrMax(dp, i, j-1), getValOrMax(dp, i-1, j)) + 1;
                 }
             }
