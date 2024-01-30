@@ -8,16 +8,11 @@ class Solution {
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
 
-            while(counter.containsKey(c)){
-                char leftC = s.charAt(left);
-                counter.put(leftC, counter.get(leftC) - 1);
-
-                if(counter.get(leftC) == 0) counter.remove(leftC);
-
-                left++;
+            if(counter.containsKey(c)){
+                left = Math.max(left, counter.get(c) + 1);
             }
 
-            counter.put(c, 1);
+            counter.put(c, i);
             maxLength = Math.max(maxLength, i - left + 1);
         }
 
