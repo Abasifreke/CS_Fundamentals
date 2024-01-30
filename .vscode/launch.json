@@ -8,6 +8,20 @@
             "type": "java",
             "name": "SubArray",
             "request": "launch",
+            "mainClass": "MockInterview.SubArray",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "NumberProcessor",
+            "request": "launch",
+            "mainClass": "MockInterview.NumberProcessor",
+            "projectName": "Practice_581f4ff5"
+        },
+        {
+            "type": "java",
+            "name": "SubArray",
+            "request": "launch",
             "mainClass": "SubArray",
             "projectName": "Practice_581f4ff5"
         },
