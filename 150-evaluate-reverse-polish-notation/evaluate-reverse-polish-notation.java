@@ -1,23 +1,40 @@
 class Solution {
-    private static final Map<String, BiFunction<Integer, Integer, Integer>> OPERATIONS = new HashMap<>();
-    static {
-        OPERATIONS.put("+", (a, b) -> b + a);
-        OPERATIONS.put("-", (a, b) -> b - a);
-        OPERATIONS.put("*", (a, b) -> b * a);
-        OPERATIONS.put("/", (a, b) -> b / a);
-    }
-
+    
     public int evalRPN(String[] tokens) {
-        Stack<Integer> operands = new Stack<>();
-
-        for(String token: tokens){
-            if(!"+-*/".contains(token)){
-                operands.push(Integer.parseInt(token));
-            }else{
-                operands.push(OPERATIONS.get(token).apply(operands.pop(), operands.pop()));
+        
+        Stack<Integer> stack = new Stack<>();
+        
+        for (String token : tokens) {
+            
+            if (!"+-*/".contains(token)) {
+                stack.push(Integer.valueOf(token));
+                continue;
             }
+            
+            int number2 = stack.pop();
+            int number1 = stack.pop();
+            
+            int result = 0;
+            
+            switch (token) {
+                case "+":
+                    result = number1 + number2;
+                    break;
+                case "-":
+                    result = number1 - number2;
+                    break;
+                case "*":
+                    result = number1 * number2;
+                    break;
+                case "/":
+                    result = number1 / number2;
+                    break;
+            }
+            
+            stack.push(result);
+            
         }
-
-        return operands.pop();
+        
+        return stack.pop();
     }
 }
