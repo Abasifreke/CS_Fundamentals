@@ -1,7 +1,7 @@
 class Solution {
     public int earliestAcq(int[][] logs, int n) {
         // sort logs if needed.
-        Arrays.sort(logs, (a, b) -> a[0] - b[0]);
+        Arrays.sort(logs,(a, b) -> a[0] - b[0]);
         Map<Integer, List<Integer>> graph = new HashMap<>();
         HashSet<Integer> unconnected = new HashSet<>();
 
@@ -25,8 +25,7 @@ class Solution {
 
             if(unconnected.isEmpty()){
                 List<Integer> reachableNodes = new ArrayList<>();
-                HashSet<Integer> visitedFromNode0 = new HashSet<Integer>();
-                reachableFromNode(graph, 0, visitedFromNode0, reachableNodes);
+                reachableFromNode(graph, 0, new HashSet<Integer>(), reachableNodes);
 
                 if(reachableNodes.size() == n){
                     return log[0];
