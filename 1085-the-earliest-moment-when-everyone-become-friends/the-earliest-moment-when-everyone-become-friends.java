@@ -25,7 +25,8 @@ class Solution {
 
             if(unconnected.isEmpty()){
                 List<Integer> reachableNodes = new ArrayList<>();
-                reachableFromNode(graph, 0, new HashSet<Integer>(), reachableNodes);
+                HashSet<Integer> visitedFromNode0 = new HashSet<Integer>();
+                reachableFromNode(graph, 0, visitedFromNode0, reachableNodes);
 
                 if(reachableNodes.size() == n){
                     return log[0];
