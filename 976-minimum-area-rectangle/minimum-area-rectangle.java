@@ -1,6 +1,5 @@
 class Solution {
-   
-    public static int minAreaRect(int[][] points) {
+     public static int minAreaRect(int[][] points) {
         Set<String> pointSet = new HashSet<>();
         for (int[] point : points) {
             String encodedPoint = encode(point[0], point[1]);
@@ -8,18 +7,14 @@ class Solution {
         }
 
         int minArea = Integer.MAX_VALUE;
-        for (int i = 0; i < points.length; ++i) {
-            for (int j = 0; j < points.length; ++j) {
-                if (i != j) {
-                    int[] p1 = points[i];
-                    int[] p2 = points[j];
-                    if (p1[0] != p2[0] && p1[1] != p2[1]) {
-                        String p3 = encode(p1[0], p2[1]);
-                        String p4 = encode(p2[0], p1[1]);
-                        if (pointSet.contains(p3) && pointSet.contains(p4)) {
-                            int area = Math.abs(p1[0] - p2[0]) * Math.abs(p1[1] - p2[1]);
-                            minArea = Math.min(minArea, area);
-                        }
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                int[] p1 = points[i];
+                int[] p2 = points[j];
+                if (p1[0] != p2[0] && p1[1] != p2[1]) {
+                    if (pointSet.contains(encode(p1[0], p2[1])) && pointSet.contains(encode(p2[0], p1[1]))) {
+                        int area = Math.abs(p1[0] - p2[0]) * Math.abs(p1[1] - p2[1]);
+                        minArea = Math.min(minArea, area);
                     }
                 }
             }
