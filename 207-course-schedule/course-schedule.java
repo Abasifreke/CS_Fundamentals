@@ -34,8 +34,8 @@ class Solution {
                 q.offer(i);
             }
         }
-                System.out.println(courseToPre);
-                System.out.println(q);
+                // System.out.println(courseToPre);
+                // System.out.println(q);
 
         while(!q.isEmpty()){
             int course = q.poll();
