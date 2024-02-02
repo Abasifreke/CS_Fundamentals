@@ -26,7 +26,7 @@ class Solution {
         }
 
         LinkedList<Integer> q = new LinkedList<>();
-        Set<Integer> visited = new HashSet<>();
+        // Set<Integer> visited = new HashSet<>();
         int coursesTaken = 0;
 
         for(int i = 0; i < n; i++){
@@ -39,12 +39,16 @@ class Solution {
             int course = q.poll();
             if(++coursesTaken > n) return false;
 
-            for(int key: courseToPre.keySet()){
-                if(!visited.contains(key) && courseToPre.get(key).contains(course)){
+            Iterator<Map.Entry<Integer, HashSet<Integer>>> iterator = courseToPre.entrySet().iterator();
+            while(iterator.hasNext()){
+                Map.Entry<Integer, HashSet<Integer>> entry = iterator.next();
+                int key = entry.getKey();
+
+                if(courseToPre.get(key).contains(course)){
                     courseToPre.get(key).remove(course);
 
                     if(courseToPre.get(key).size() == 0){
-                        visited.add(key);
+                        // visited.add(key);
                         q.add(key);
                     }
                 }
