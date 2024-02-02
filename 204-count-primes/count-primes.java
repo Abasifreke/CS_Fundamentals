@@ -4,12 +4,8 @@ class Solution {
         // Arrays.fill(dp, -1);
 
         int count = 0;
-        for(int i = 2; i < n; i++){
-
+        for(int i = 2; i <= (int)Math.sqrt(n); i++){
             if(dp[i] == false){
-                count++;
-                // dp[i] = i;
-
                 int j = 2;
                 while(i * j < n){
                     if(!dp[i*j]){
@@ -20,6 +16,9 @@ class Solution {
             }
         }
 
+        for(int i = 2; i < n; i++){
+            if(!dp[i]) count++;
+        }
         return count;
     }
 }
