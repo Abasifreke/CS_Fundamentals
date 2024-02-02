@@ -26,7 +26,6 @@ class Solution {
         }
 
         LinkedList<Integer> q = new LinkedList<>();
-        // Set<Integer> visited = new HashSet<>();
         int coursesTaken = 0;
 
         for(int i = 0; i < n; i++){
@@ -44,11 +43,10 @@ class Solution {
                 Map.Entry<Integer, HashSet<Integer>> entry = iterator.next();
                 int key = entry.getKey();
 
-                if(courseToPre.get(key).contains(course)){
+                if(entry.getValue().contains(course)){
                     courseToPre.get(key).remove(course);
 
                     if(courseToPre.get(key).size() == 0){
-                        // visited.add(key);
                         q.add(key);
                     }
                 }
