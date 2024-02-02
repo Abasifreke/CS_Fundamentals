@@ -39,7 +39,7 @@ class Solution {
 
         while(!q.isEmpty()){
             int course = q.poll();
-            System.out.println(coursesTaken);
+            // System.out.println(coursesTaken);
             if(++coursesTaken > n) return false;
 
             for(int key: courseToPre.keySet()){
