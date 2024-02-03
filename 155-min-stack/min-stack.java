@@ -14,12 +14,12 @@ class MinStack {
 
     */
 
-    private Stack<Integer> main;
-    private Stack<Integer> minTracker;
+    private LinkedList<Integer> main;
+    private LinkedList<Integer> minTracker;
 
     public MinStack() {
-        this.main = new Stack<>();
-        this.minTracker = new Stack<>();
+        this.main = new LinkedList<>();
+        this.minTracker = new LinkedList<>();
     }
     
     public void push(int val) {
