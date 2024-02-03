@@ -10,11 +10,6 @@ class Solution {
             prefix[i] = accumulator;
             accumulator *= nums[i];
         }
-
-        // [1, 2 ,3, 4]
-        // [1, 1, 2, 6]
-        // 24
-        // [24, 12,8, 6]
         int[] result = new int[n];
         
         accumulator = 1;
