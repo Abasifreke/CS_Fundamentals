@@ -1,44 +1,39 @@
 class Solution {
-    public boolean canFinish(int n, int[][] prerequisites) {
-        int[] inDegree = new int[n];
-        List<List<Integer>> preToCourses = new ArrayList<>();
-        
-        for(int i = 0; i < n; i++){
-            preToCourses.add(new ArrayList<>());
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[] indegree = new int[numCourses];
+        List<List<Integer>> adj = new ArrayList<>(numCourses);
+
+        for (int i = 0; i < numCourses; i++) {
+            adj.add(new ArrayList<>());
         }
 
-        for(int[] combo: prerequisites){
-            int course = combo[0];
-            int pre = combo[1];
-
-            preToCourses.get(pre).add(course);
-            inDegree[course]++;
+        for (int[] prerequisite : prerequisites) {
+            adj.get(prerequisite[1]).add(prerequisite[0]);
+            indegree[prerequisite[0]]++;
         }
 
-        LinkedList<Integer> q = new LinkedList<>();
-        int coursesTaken = 0;
-
-        for(int i = 0; i < n; i++){
-            if(inDegree[i] == 0){
-                q.offer(i);
+        Queue<Integer> queue = new LinkedList<>();
+        // Push all the nodes with indegree zero in the queue.
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                queue.offer(i);
             }
         }
-            
-        while(!q.isEmpty()){
-            int pre = q.poll();
-            if(++coursesTaken > n) return false;
 
-            for(int course: preToCourses.get(pre)){
-                inDegree[course]--;
-                
-                if(inDegree[course] == 0){
-                    q.add(course);
+        int nodesVisited = 0;
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            nodesVisited++;
+
+            for (int neighbor : adj.get(node)) {
+                // Delete the edge "node -> neighbor".
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) {
+                    queue.offer(neighbor);
                 }
             }
-            
-
         }
 
-        return coursesTaken == n;
+        return nodesVisited == numCourses;
     }
 }
