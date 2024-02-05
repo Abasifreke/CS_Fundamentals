@@ -36,14 +36,11 @@ class Solution {
             return;
         }
 
-        // int orig = 1;
         grid[i][j] = 0;
-
         DFS(grid, i+1, j, min, acc + 1);
         DFS(grid, i-1, j, min, acc + 1);
         DFS(grid, i, j+1, min, acc + 1);
         DFS(grid, i, j-1, min, acc + 1);
-        
         grid[i][j] = 1;
     }
     
