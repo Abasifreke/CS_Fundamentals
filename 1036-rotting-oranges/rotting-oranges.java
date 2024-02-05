@@ -1,47 +1,40 @@
 class Solution {
-    public int orangesRotting(int[][] grid) {
-        /*
-            [
-            [2,1,1],
-            [1,1,1],
-            [0,1,2]
-            ]
-        */
-
-        int m = grid.length, n = grid[0].length;
-        int globalMax = Integer.MIN_VALUE;
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(grid[i][j] == 1){
-                    int[] min = {Integer.MAX_VALUE};
-                    DFS(grid, i, j, min, 0);
-                    if(min[0] == Integer.MAX_VALUE){
-                        return -1;
+    // run the rotting process, by marking the rotten oranges with the timestamp
+    public boolean runRottingProcess(int timestamp, int[][] grid, int ROWS, int COLS) {
+        int[][] directions = { {-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        // flag to indicate if the rotting process should be continued
+        boolean toBeContinued = false;
+        for (int row = 0; row < ROWS; ++row)
+            for (int col = 0; col < COLS; ++col)
+                if (grid[row][col] == timestamp)
+                    // current contaminated cell
+                    for (int[] d : directions) {
+                        int nRow = row + d[0], nCol = col + d[1];
+                        if (nRow >= 0 && nRow < ROWS && nCol >= 0 && nCol < COLS)
+                            if (grid[nRow][nCol] == 1) {
+                                // this fresh orange would be contaminated next
+                                grid[nRow][nCol] = timestamp + 1;
+                                toBeContinued = true;
+                            }
                     }
-                    globalMax = Math.max(globalMax, min[0]);
-                }
-            }
-        }
-
-        return Math.max(globalMax, 0);
+        return toBeContinued;
     }
 
-    private void DFS(int[][] grid, int i, int j, int[] min, int acc){
-        int m = grid.length, n = grid[0].length;
+    public int orangesRotting(int[][] grid) {
+        int ROWS = grid.length, COLS = grid[0].length;
+        int timestamp = 2;
+        while (runRottingProcess(timestamp, grid, ROWS, COLS))
+            timestamp++;
 
-        if(i < 0 || i == m || j < 0 || j == n || grid[i][j] == 0) return;
+        // end of process, to check if there are still fresh oranges left
+        for (int[] row : grid)
+            for (int cell : row)
+                // still got a fresh orange left
+                if (cell == 1)
+                    return -1;
 
-        if(grid[i][j] == 2){
-            min[0] = Math.min(min[0], acc);
-            return;
-        }
 
-        grid[i][j] = 0;
-        DFS(grid, i+1, j, min, acc + 1);
-        DFS(grid, i-1, j, min, acc + 1);
-        DFS(grid, i, j+1, min, acc + 1);
-        DFS(grid, i, j-1, min, acc + 1);
-        grid[i][j] = 1;
+        // return elapsed minutes if no fresh orange left
+        return timestamp - 2;
     }
-    
 }
