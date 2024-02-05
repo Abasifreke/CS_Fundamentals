@@ -1,56 +1,47 @@
 class Solution {
     public int orangesRotting(int[][] grid) {
-        Queue<Pair<Integer, Integer>> queue = new ArrayDeque();
+        /*
+            [
+            [2,1,1],
+            [1,1,1],
+            [0,1,2]
+            ]
+        */
 
-        // Step 1). build the initial set of rotten oranges
-        int freshOranges = 0;
-        int ROWS = grid.length, COLS = grid[0].length;
-
-        for (int r = 0; r < ROWS; ++r)
-            for (int c = 0; c < COLS; ++c)
-                if (grid[r][c] == 2)
-                    queue.offer(new Pair(r, c));
-                else if (grid[r][c] == 1)
-                    freshOranges++;
-
-        // Mark the round / level, _i.e_ the ticker of timestamp
-        queue.offer(new Pair(-1, -1));
-
-        // Step 2). start the rotting process via BFS
-        int minutesElapsed = -1;
-        int[][] directions = { {-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-
-        while (!queue.isEmpty()) {
-            Pair<Integer, Integer> p = queue.poll();
-            int row = p.getKey();
-            int col = p.getValue();
-            if (row == -1) {
-                // We finish one round of processing
-                minutesElapsed++;
-                // to avoid the endless loop
-                if (!queue.isEmpty())
-                    queue.offer(new Pair(-1, -1));
-            } else {
-                // this is a rotten orange
-                // then it would contaminate its neighbors
-                for (int[] d : directions) {
-                    int neighborRow = row + d[0];
-                    int neighborCol = col + d[1];
-                    if (neighborRow >= 0 && neighborRow < ROWS && 
-                        neighborCol >= 0 && neighborCol < COLS) {
-                        if (grid[neighborRow][neighborCol] == 1) {
-                            // this orange would be contaminated
-                            grid[neighborRow][neighborCol] = 2;
-                            freshOranges--;
-                            // this orange would then contaminate other oranges
-                            queue.offer(new Pair(neighborRow, neighborCol));
-                        }
+        int m = grid.length, n = grid[0].length;
+        int globalMax = Integer.MIN_VALUE;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(grid[i][j] == 1){
+                    int[] min = {Integer.MAX_VALUE};
+                    DFS(grid, i, j, min, 0);
+                    if(min[0] == Integer.MAX_VALUE){
+                        return -1;
                     }
+                    globalMax = Math.max(globalMax, min[0]);
                 }
             }
         }
 
-        // return elapsed minutes if no fresh orange left
-        return freshOranges == 0 ? minutesElapsed : -1;
+        return Math.max(globalMax, 0);
     }
+
+    private void DFS(int[][] grid, int i, int j, int[] min, int acc){
+        int m = grid.length, n = grid[0].length;
+
+        if(i < 0 || i == m || j < 0 || j == n || grid[i][j] == 0) return;
+
+        if(grid[i][j] == 2){
+            min[0] = Math.min(min[0], acc);
+            return;
+        }
+
+        grid[i][j] = 0;
+        DFS(grid, i+1, j, min, acc + 1);
+        DFS(grid, i-1, j, min, acc + 1);
+        DFS(grid, i, j+1, min, acc + 1);
+        DFS(grid, i, j-1, min, acc + 1);
+        grid[i][j] = 1;
+    }
+    
 }
