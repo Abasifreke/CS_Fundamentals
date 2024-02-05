@@ -16,8 +16,6 @@ class Solution {
                     int[] min = {Integer.MAX_VALUE};
                     DFS(grid, i, j, min, 0);
                     if(min[0] == Integer.MAX_VALUE){
-                        // System.out.println("return -1 for i and j : " + i + " " + j); 
-                        // System.out.println(Arrays.deepToString(grid));
                         return -1;
                     }
                     globalMax = Math.max(globalMax, min[0]);
