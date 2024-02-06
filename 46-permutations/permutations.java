@@ -16,16 +16,16 @@ class Solution {
 
     private void permRecur(Set<Integer> remainder, List<List<Integer>> result, List<Integer> accumulator){
         
-        if(remainder.isEmpty()){
+        if(accumulator.size() == remainder.size()){
             result.add(new ArrayList<>(accumulator));
         }
 
         for(int choice: remainder){
-            Set<Integer> newRemainder = new HashSet<>(remainder);
-            newRemainder.remove(choice);
-            accumulator.add(choice);
-            permRecur(newRemainder, result, accumulator);
-            accumulator.removeLast();
+            if(!accumulator.contains(choice)){
+                accumulator.add(choice);
+                permRecur(remainder, result, accumulator);
+                accumulator.removeLast();
+            }
         }
     }
 }
