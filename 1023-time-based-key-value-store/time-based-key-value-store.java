@@ -2,16 +2,16 @@ class TimeMap {
     HashMap<String, ArrayList<Pair<Integer, String>>> keyTimeMap;
     
     public TimeMap() {
-        keyTimeMap = new HashMap();
+        keyTimeMap = new HashMap<>();
     }
     
     public void set(String key, String value, int timestamp) {
         if (!keyTimeMap.containsKey(key)) {
-            keyTimeMap.put(key, new ArrayList());
+            keyTimeMap.put(key, new ArrayList<>());
         }
         
         // Store '(timestamp, value)' pair in 'key' bucket.
-        keyTimeMap.get(key).add(new Pair(timestamp, value));
+        keyTimeMap.get(key).add(new Pair<>(timestamp, value));
     }
     
     public String get(String key, int timestamp) {
@@ -44,10 +44,7 @@ class TimeMap {
         }
 
         // If iterator points to first element it means, no time <= timestamp exists.
-        // if (right == 0) {
-        //     return "";
-        // }
-                
+      
         return answer;
     }
 }
