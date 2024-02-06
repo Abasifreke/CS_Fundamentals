@@ -40,9 +40,9 @@ class Solution {
                 left++;
             }
         }
-        System.out.println(tMap);
-        System.out.println(sMap);
-        System.out.println("Right and left are : " + right + " and " + left);
+        // System.out.println(tMap);
+        // System.out.println(sMap);
+        // System.out.println("Right and left are : " + right + " and " + left);
 
         return minRight == m+1 ? "": s.substring(minLeft, minRight);
     }
