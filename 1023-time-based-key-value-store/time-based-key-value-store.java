@@ -1,3 +1,6 @@
+
+
+
 class TimeMap {
     HashMap<String, ArrayList<Pair<Integer, String>>> keyTimeMap;
     
@@ -19,18 +22,19 @@ class TimeMap {
         if (!keyTimeMap.containsKey(key)) {
             return "";
         }
+        ArrayList<Pair<Integer, String>> values = keyTimeMap.get(key);
         
-        if (timestamp < keyTimeMap.get(key).get(0).getKey()) {
+        if (timestamp < values.get(0).getKey()) {
             return "";
         }
         
         // Using binary search on the list of pairs.
         int left = 0;
-        int right = keyTimeMap.get(key).size();
+        int right = values.size();
         
-        while (left < right) {
+         while (left < right) {
             int mid = (left + right) / 2;
-            if (keyTimeMap.get(key).get(mid).getKey() <= timestamp) {
+            if (values.get(mid).getKey() <= timestamp) {
                 left = mid + 1;
             } else {
                 right = mid;
@@ -42,6 +46,6 @@ class TimeMap {
             return "";
         }
                 
-        return keyTimeMap.get(key).get(right - 1).getValue();
+        return values.get(right - 1).getValue();
     }
 }
