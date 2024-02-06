@@ -1,29 +1,22 @@
-public class Solution {
-    public void permuteRec(int[] nums, int begin, List<List<Integer>> result) {
-        if (begin == nums.length) {
-            List<Integer> temp = new ArrayList<Integer>();
-            for (int num : nums) temp.add(num);
-            result.add(temp);
-            return;
-        }
-        for (int i = begin; i < nums.length; i++) {
-            // Swap
-            int temp = nums[begin];
-            nums[begin] = nums[i];
-            nums[i] = temp;
-            
-            permuteRec(nums, begin + 1, result);
-            
-            // Swap back
-            temp = nums[begin];
-            nums[begin] = nums[i];
-            nums[i] = temp;
-        }
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        backtrack(new ArrayList<>(), ans, nums);
+        return ans;
     }
     
-    public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<List<Integer>>();
-        permuteRec(nums, 0, result);
-        return result;
+    public void backtrack(List<Integer> curr, List<List<Integer>> ans, int[] nums) {
+        if (curr.size() == nums.length) {
+            ans.add(new ArrayList<>(curr));
+            return;
+        }
+        
+        for (int num: nums) {
+            if (!curr.contains(num)) {
+                curr.add(num);
+                backtrack(curr, ans, nums);
+                curr.remove(curr.size() - 1);
+            }
+        }
     }
 }
