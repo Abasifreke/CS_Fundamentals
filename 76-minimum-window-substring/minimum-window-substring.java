@@ -24,7 +24,6 @@ class Solution {
             right++;
 
             while(left < right && have == n){
-                // System.out.println("subanswers " + s.substring(left, right));
                 if(minRight - minLeft > right - left){
                     minRight = right;
                     minLeft = left;
@@ -40,10 +39,7 @@ class Solution {
                 left++;
             }
         }
-        // System.out.println(tMap);
-        // System.out.println(sMap);
-        // System.out.println("Right and left are : " + right + " and " + left);
-
+       
         return minRight == m+1 ? "": s.substring(minLeft, minRight);
     }
 }
