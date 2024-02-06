@@ -11,6 +11,7 @@ class Solution {
         
         if(accumulator.size() == nums.length){
             result.add(new ArrayList<>(accumulator));
+            return;
         }
 
         for(int choice: nums){
