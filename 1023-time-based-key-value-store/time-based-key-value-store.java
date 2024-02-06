@@ -1,40 +1,53 @@
 class TimeMap {
-
-    Map<String, List<Pair<String, Integer>>> map = new HashMap<>();
-    public TimeMap() { }
+    HashMap<String, ArrayList<Pair<Integer, String>>> keyTimeMap;
+    
+    public TimeMap() {
+        keyTimeMap = new HashMap();
+    }
     
     public void set(String key, String value, int timestamp) {
-        if(!map.containsKey(key)) {
-            map.put(key, new ArrayList<>());
+        if (!keyTimeMap.containsKey(key)) {
+            keyTimeMap.put(key, new ArrayList());
         }
-        map.get(key).add(new Pair(value, timestamp));
+        
+        // Store '(timestamp, value)' pair in 'key' bucket.
+        keyTimeMap.get(key).add(new Pair(timestamp, value));
     }
     
     public String get(String key, int timestamp) {
-        if(!map.containsKey(key)) {
+        // If the 'key' does not exist in map we will return empty string.
+        if (!keyTimeMap.containsKey(key)) {
             return "";
         }
-        return binaryGet(map.get(key), 0, map.get(key).size() - 1, timestamp);
-    }
-    
-    private String binaryGet(List<Pair<String, Integer>> list, int start, int end, int timestamp) {
-    
-        if(start > end) return "";
+        ArrayList<Pair<Integer, String>> values = keyTimeMap.get(key);
         
-        int mid = start + (end - start) / 2;
-        Pair<String, Integer> midItem = list.get(mid);
-        
-        if(timestamp == midItem.getValue()) return midItem.getKey();
-        
-        if(timestamp < midItem.getValue()) {
-            if(mid - 1 < 0) return "";
-            if(list.get(mid - 1).getValue() <= timestamp) return list.get(mid - 1).getKey();
-            return binaryGet(list, start, mid - 1, timestamp);
+        if (timestamp < values.get(0).getKey()) {
+            return "";
         }
-        else {
-            if(mid + 1 >= list.size()) return midItem.getKey();
-            if(list.get(mid + 1).getValue() == timestamp) return list.get(mid + 1).getKey();
-            return binaryGet(list, mid + 1, end, timestamp);
+        
+        // Using binary search on the list of pairs.
+        int left = 0;
+        int right = values.size()-1;
+        
+        String answer = "";
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            
+            if(values.get(mid).getKey() == timestamp) return values.get(mid).getValue();
+
+            if (values.get(mid).getKey() <= timestamp) {
+                answer = values.get(mid).getValue(); //potential answer
+                left = mid + 1;
+            } else {
+                right = mid-1;
+            }
         }
+
+        // If iterator points to first element it means, no time <= timestamp exists.
+        // if (right == 0) {
+        //     return "";
+        // }
+                
+        return answer;
     }
 }
