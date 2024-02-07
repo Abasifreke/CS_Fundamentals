@@ -27,8 +27,8 @@ class Solution {
             }
         }
 
-        System.out.println(emailGraph);
-        System.out.println(emailSet);
+        // System.out.println(emailGraph);
+        // System.out.println(emailSet);
 
         List<List<String>> result = new ArrayList<>();
         Set<String> visited = new HashSet<>();
