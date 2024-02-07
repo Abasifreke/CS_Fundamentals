@@ -61,8 +61,10 @@ class Solution {
 
         visited.add(email);
         accountList.add(email);
-        for(String nEmail: emailGraph.getOrDefault(email, new HashSet<>())){
-            DFS(emailGraph, nEmail, accountList, visited);
+        if(emailGraph.containsKey(email)){
+            for(String nEmail: emailGraph.get(email)){
+                DFS(emailGraph, nEmail, accountList, visited);
+            }
         }
     }
 }
