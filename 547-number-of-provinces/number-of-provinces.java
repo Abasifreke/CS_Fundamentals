@@ -12,10 +12,10 @@ class UnionFind {
             parent[x] = find(parent[x]);
         return parent[x];
     }
-    public void union_set(int x, int y) {
+    public int union_set(int x, int y) {
         int xset = find(x), yset = find(y);
         if (xset == yset) {
-            return;
+            return 0;
         } else if (rank[xset] < rank[yset]) {
             parent[xset] = yset;
         } else if (rank[xset] > rank[yset]) {
@@ -24,6 +24,7 @@ class UnionFind {
             parent[yset] = xset;
             rank[xset]++;
         }
+        return 1;
     }
 }
 
@@ -35,9 +36,8 @@ class Solution {
 
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (isConnected[i][j] == 1 && dsu.find(i) != dsu.find(j)) {
-                    numberOfComponents--;
-                    dsu.union_set(i, j);
+                if (isConnected[i][j] == 1) {
+                    numberOfComponents -= dsu.union_set(i, j);
                 }
             }
         }
