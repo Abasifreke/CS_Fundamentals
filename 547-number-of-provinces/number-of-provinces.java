@@ -1,8 +1,12 @@
 class Solution {
+
+    int[] unionSet;
+    int[] rank;
+
     public int findCircleNum(int[][] isConnected) {
         int n = isConnected.length;
-        int[] unionSet = new int[n];
-        int[] rank = new int[n];
+        this.unionSet = new int[n];
+        this.rank = new int[n];
 
         for(int i = 0; i < unionSet.length; i++){
             unionSet[i] = i;
@@ -13,7 +17,7 @@ class Solution {
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
                 if(i != j && isConnected[i][j] == 1){
-                    result -= union(unionSet, rank, i, j);
+                    result -= union(i, j);
                 }
             }
         }
@@ -21,9 +25,9 @@ class Solution {
         return result;
     }
 
-    private int union(int[] unionSet, int[] rank, int nodeA, int nodeB){
-        int rootOfA = find(unionSet, nodeA);
-        int rootOfB = find(unionSet, nodeB);
+    private int union( int nodeA, int nodeB){
+        int rootOfA = find( nodeA);
+        int rootOfB = find( nodeB);
 
         if(rootOfA != rootOfB){
             if(rank[rootOfA] > rank[rootOfB]){
@@ -41,9 +45,9 @@ class Solution {
         return 0;
     }
 
-    private int find(int[] unionSet, int node){
+    private int find(int node){
         if(unionSet[node] == node) return node;
 
-        return unionSet[node] = find(unionSet, unionSet[node]);
+        return unionSet[node] = find(unionSet[node]);
     }
 }
