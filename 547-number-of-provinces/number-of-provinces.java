@@ -9,23 +9,19 @@ class Solution {
             rank[i] = 1;
         }
 
+        int result = n;
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
                 if(i != j && isConnected[i][j] == 1){
-                    union(unionSet, rank, i, j);
+                    result -= union(unionSet, rank, i, j);
                 }
             }
         }
-        // System.out.println(Arrays.toString(unionSet));
-        Set<Integer> roots = new HashSet<>();
-        for(int i = 0; i < n; i++){
-            roots.add(find(unionSet, i));
-        }
-
-        return roots.size();
+   
+        return result;
     }
 
-    private void union(int[] unionSet, int[] rank, int nodeA, int nodeB){
+    private int union(int[] unionSet, int[] rank, int nodeA, int nodeB){
         int rootOfA = find(unionSet, nodeA);
         int rootOfB = find(unionSet, nodeB);
 
@@ -39,8 +35,10 @@ class Solution {
                 rank[rootOfA] += 1;
             }
 
+            return 1;
         }
 
+        return 0;
     }
 
     private int find(int[] unionSet, int node){
