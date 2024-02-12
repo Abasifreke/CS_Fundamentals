@@ -16,7 +16,7 @@ class Solution {
                 }
             }
         }
-        System.out.println(Arrays.toString(unionSet));
+        // System.out.println(Arrays.toString(unionSet));
         Set<Integer> roots = new HashSet<>();
         for(int i = 0; i < n; i++){
             roots.add(find(unionSet, i));
