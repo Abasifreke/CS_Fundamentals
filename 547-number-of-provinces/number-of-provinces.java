@@ -44,7 +44,7 @@ class Solution {
     private int find(int[] unionSet, int node){
         if(unionSet[node] == node) return node;
 
-        unionSet[node] = find(unionSet, unionSet[node]);
-        return unionSet[node];
+        return unionSet[node] = find(unionSet, unionSet[node]);
+        // return unionSet[node];
     }
 }
