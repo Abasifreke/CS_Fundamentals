@@ -45,6 +45,5 @@ class Solution {
         if(unionSet[node] == node) return node;
 
         return unionSet[node] = find(unionSet, unionSet[node]);
-        // return unionSet[node];
     }
 }
