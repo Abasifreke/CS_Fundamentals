@@ -16,7 +16,7 @@ class Solution {
         // start from 
         int[] planted = new int[n+1];
         backtrack(graph, 1, planted);
-        System.out.println(Arrays.toString(planted));
+        // System.out.println(Arrays.toString(planted));
         return Arrays.copyOfRange(planted, 1, n+1);
     }
 
