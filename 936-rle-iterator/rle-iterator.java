@@ -18,11 +18,7 @@ class RLEIterator {
         if(this.currIndex >= this.encoding.length) return -1;
 
         this.encoding[this.currIndex] -= (n - agg);
-        int result = this.encoding[this.currIndex + 1];
-
-        // if(this.encoding[this.currIndex] == 0) this.currIndex += 2;
-
-        return result;
+        return this.encoding[this.currIndex + 1];
     }
 }
 
