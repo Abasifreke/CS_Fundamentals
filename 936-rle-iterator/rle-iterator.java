@@ -20,7 +20,7 @@ class RLEIterator {
         this.encoding[this.currIndex] -= (n - agg);
         int result = this.encoding[this.currIndex + 1];
 
-        if(this.encoding[this.currIndex] == 0) this.currIndex += 2;
+        // if(this.encoding[this.currIndex] == 0) this.currIndex += 2;
 
         return result;
     }
