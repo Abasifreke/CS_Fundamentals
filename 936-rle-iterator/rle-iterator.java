@@ -8,7 +8,7 @@ class RLEIterator {
     }
     
     public int next(int n) {
-        int agg = 0;
+        int agg = 0; // consumer
         while(this.currIndex < this.encoding.length && agg + this.encoding[this.currIndex] < n){
             agg += this.encoding[this.currIndex];
             this.encoding[this.currIndex] = 0;
