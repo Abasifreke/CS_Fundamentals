@@ -11,6 +11,7 @@ class Solution {
             second = temp;
         }
 
-        return Math.max(second, first);
+        return second;
+        // return Math.max(second, first);
     }
 }
