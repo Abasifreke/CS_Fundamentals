@@ -22,7 +22,6 @@ class Solution {
 
         // Pair of destination to weight
         PriorityQueue<SimpleEntry<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
-        Set<Integer> visited = new HashSet<>();
         pq.offer(new SimpleEntry<>(k, 0));
 
         while(!pq.isEmpty()){
