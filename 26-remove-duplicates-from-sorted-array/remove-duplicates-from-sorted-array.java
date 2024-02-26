@@ -14,16 +14,16 @@ class Solution {
         int curr = nums[0];
         while(right < nums.length){
             if(nums[left] != nums[right]){
-                swap(nums, ++left, right);
+                nums[++left] = nums[right];
             }
             right++;
         }
         return left+1;
     }
     
-    private void swap(int[] arr, int left, int right){
-        int temp = arr[left];
-        arr[left] = arr[right];
-        arr[right] = temp;
-    }
+    // private void swap(int[] arr, int left, int right){
+    //     int temp = arr[left];
+    //     arr[left] = arr[right];
+    //     arr[right] = temp;
+    // }
 }
