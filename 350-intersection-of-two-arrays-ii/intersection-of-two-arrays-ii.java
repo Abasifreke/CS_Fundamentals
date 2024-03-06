@@ -8,23 +8,19 @@ class Solution {
             nums2 = temp;
         }
         
-        Map<Integer, Integer> uniqueNums1 = Arrays.stream(nums1).boxed()
-            .collect(Collectors.toMap(k -> k, v -> 1, (old, newer) -> old + newer));
+        Map<Integer, Integer> uniqueNums1 = new HashMap<>();
+        for(int i: nums1){
+            uniqueNums1.put(i, uniqueNums1.getOrDefault(i, 0) + 1);
+        }
         
         ArrayList<Integer> union = new ArrayList<>();
         
-        Arrays.stream(nums2).forEach((i) -> {
-            if(uniqueNums1.containsKey(i)){
+        for(int i: nums2){
+            if(uniqueNums1.getOrDefault(i, 0) > 0){
                 union.add(i);
-                
-                int val = uniqueNums1.get(i);
-                if(val == 1){
-                  uniqueNums1.remove(i);  
-                }else{
-                    uniqueNums1.put(i, val -1);
-                }
+                uniqueNums1.put(i, uniqueNums1.get(i) -1);
             }
-        });
+        }
         
         int[] result = new int[union.size()];
         
@@ -32,7 +28,6 @@ class Solution {
         for(int i: union){
             result[j++] = i;
         }
-        
         return result;
         
     }
