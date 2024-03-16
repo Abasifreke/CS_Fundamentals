@@ -34,7 +34,7 @@ class Solution {
        
         int maxNumOf3 = 0;
 
-        for(int i = 0; i <= length/3; i++){
+        for(int i = 1; i <= length/3; i++){
             if((length - (i * 3)) % 2 == 0) {
                 maxNumOf3 = Math.max(maxNumOf3, i);
             }
