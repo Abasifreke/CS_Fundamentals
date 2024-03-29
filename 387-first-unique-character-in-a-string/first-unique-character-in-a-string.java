@@ -1,14 +1,15 @@
 class Solution {
     public int firstUniqChar(String s) {
-        Map<Character, Integer> charCount = new HashMap<>();
+        // only supporting lowercase letter per constraints.
+        int[] charCount = new int[26]; 
 
         for (char c : s.toCharArray()) {
-            charCount.put(c, charCount.getOrDefault(c, 0) +1);
+            charCount[c-'a']++;
         }
 
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (charCount.get(c) == 1)
+          
+            if (charCount[s.charAt(i) - 'a'] == 1)
                 return i;
         }
 
